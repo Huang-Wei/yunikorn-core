@@ -629,6 +629,7 @@ func (sq *Queue) incPendingResource(delta *resources.Resource) {
 	sq.Lock()
 	defer sq.Unlock()
 	sq.pending = resources.Add(sq.pending, delta)
+	sq.updateAllocatedAndPendingResourceMetrics()
 }
 
 // decPendingResource decrements pending resource of this queue and its parents.
